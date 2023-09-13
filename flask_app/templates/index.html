@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/style.css') }}">
+    <title>Create Ninja</title>
+</head>
+<body>
+    <a href="/dojos">Home</a>
+    <form action="/create_ninja/" method="post" class="p-3 col-4 mx-auto my-5 bg-dark text-light">
+        <h2 class="text-center text-primary">New Ninja</h2>
+        <div class="form-group">
+            <label for="dojo">Dojo: </label>
+            <select name="dojo_id" class="form-control">
+                <!-- Need to create an option list for the user to select a dojo. -->
+                <!-- Note that we are passing the dojo id into the value -->
+                {% for dojo in all_dojos %}
+                <option value={{dojo.id}}>{{dojo.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="first_name">First Name: </label>
+            <input type="text" name="first_name" id="first_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="last_name">Last Name: </label>
+            <input type="text" name="last_name" id="last_name" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="age">Age: </label>
+            <input type="number" min="0" name="age" id="age" class="form-control">
+        </div>
+        <input type="submit" value="Add Ninja!" class="btn btn-primary btn-outline-dark">
+    </form>
+</body>
+</html>
